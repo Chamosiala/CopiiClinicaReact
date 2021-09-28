@@ -1,0 +1,17 @@
+fragment RegularPrezenta on Prezenta {
+  id
+  createdAt
+  updatedAt
+  copilId
+  copil {
+    nume
+    prenume
+    varsta
+  }
+  prezentaTopics {
+    ...RegularPrezentaTopic
+  }
+  data
+  dataFrumoasa
+  prezent
+}

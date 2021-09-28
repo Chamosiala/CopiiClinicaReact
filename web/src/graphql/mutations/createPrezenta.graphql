@@ -1,0 +1,10 @@
+mutation CreatePrezenta($copilId: Int!, $input: PrezentaInput!) {
+  createPrezenta(copilId: $copilId, input: $input) {
+    errors {
+      ...RegularError
+    }
+    prezenta {
+      ...RegularPrezenta
+    }
+  }
+}

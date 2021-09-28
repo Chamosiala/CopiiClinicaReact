@@ -1,0 +1,11 @@
+fragment RegularCopil on Copil {
+  id
+  createdAt
+  updatedAt
+  nume
+  prenume
+  varsta
+  prezente {
+    ...RegularPrezenta
+  }
+}

@@ -1,0 +1,5 @@
+query Copil($id: Int!) {
+  copil(id: $id) {
+    ...RegularCopil
+  }
+}

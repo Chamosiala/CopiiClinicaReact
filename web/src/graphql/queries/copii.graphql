@@ -1,0 +1,7 @@
+query Copii {
+  copii {
+    copii {
+      ...RegularCopil
+    }
+  }
+}

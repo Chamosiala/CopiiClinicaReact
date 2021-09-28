@@ -1,0 +1,14 @@
+mutation CreatePrezentaTopic(
+  $prezentaId: Int!
+  $tip: String!
+  $input: PrezentaTopicInput!
+) {
+  createPrezentaTopic(prezentaId: $prezentaId, tip: $tip, input: $input) {
+    errors {
+      ...RegularError
+    }
+    prezentaTopic {
+      ...RegularPrezentaTopic
+    }
+  }
+}

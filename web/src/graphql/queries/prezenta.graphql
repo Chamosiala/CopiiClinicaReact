@@ -1,0 +1,5 @@
+query Prezenta($id: Int!) {
+  prezenta(id: $id) {
+    ...RegularPrezenta
+  }
+}

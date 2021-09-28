@@ -1,0 +1,9 @@
+fragment RegularPrezentaTopic on PrezentaTopic {
+  id
+  createdAt
+  updatedAt
+  titlu
+  detalii
+  tip
+  prezentaId
+}

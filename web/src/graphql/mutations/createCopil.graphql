@@ -1,0 +1,10 @@
+mutation CreateCopil($input: CopilInput!) {
+  createCopil(input: $input) {
+    errors {
+      ...RegularError
+    }
+    copil {
+      ...RegularCopil
+    }
+  }
+}

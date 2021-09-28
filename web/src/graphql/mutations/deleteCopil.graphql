@@ -1,0 +1,3 @@
+mutation DeleteCopil($id: Int!) {
+  deleteCopil(id: $id)
+}
