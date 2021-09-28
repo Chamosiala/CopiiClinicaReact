@@ -1,4 +1,4 @@
-import { Container, Heading } from "@chakra-ui/layout";
+import { Heading } from "@chakra-ui/layout";
 import { withUrqlClient } from "next-urql";
 import React from "react";
 import { Layout } from "../components/Layout";
