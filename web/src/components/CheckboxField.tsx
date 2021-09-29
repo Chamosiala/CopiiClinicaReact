@@ -5,23 +5,20 @@ import {
   FormLabel,
 } from "@chakra-ui/form-control";
 import { useField } from "formik";
-import React, { InputHTMLAttributes } from "react";
+import React from "react";
 
-type CheckboxFieldProps = InputHTMLAttributes<HTMLInputElement> & {
-  label: string;
-  name: string;
-};
+// type CheckboxFieldProps = InputHTMLAttributes<HTMLInputElement> & {
+//   label: string;
+//   name: string;
+// };
 
-export const CheckboxField: React.FC<CheckboxFieldProps> = ({
-  label,
-  size: _,
-  ...props
-}) => {
+export const CheckboxField: React.FC<any> = ({ label, size: _, ...props }) => {
   const [field, { error }] = useField(props);
   return (
     <FormControl isInvalid={!!error}>
-      <FormLabel htmlFor={field.name}>{label}</FormLabel>
-      <Checkbox {...field} {...props} id={field.name} />
+      <Checkbox {...field} {...props} id={field.name}>
+        {label}
+      </Checkbox>
       {error ? <FormErrorMessage>{error}</FormErrorMessage> : null}
     </FormControl>
   );

@@ -4,6 +4,7 @@ import { Field, Form, Formik } from "formik";
 import { withUrqlClient } from "next-urql";
 import router from "next/router";
 import React from "react";
+import { CheckboxField } from "../../components/CheckboxField";
 import { InputField } from "../../components/InputField";
 import { Layout } from "../../components/Layout";
 import { useCreatePrezentaMutation } from "../../generated/graphql";
@@ -45,11 +46,12 @@ export const CreatePrezenta = ({}) => {
                 placeholder="data"
                 type="datetime-local"
               />
-              <label>
-                <Field type="checkbox" name="prezent" />
-                Prezent?
-              </label>
-              <br />
+              <CheckboxField
+                mt={4}
+                defaultIsChecked
+                name="prezent"
+                label="Prezent?"
+              />
               <Button
                 colorScheme="orange"
                 mt={4}
