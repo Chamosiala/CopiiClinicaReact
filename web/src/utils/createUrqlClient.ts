@@ -31,9 +31,6 @@ export const createUrqlClient = (ssrExchange: any) => ({
   exchanges: [
     dedupExchange,
     cacheExchange({
-      keys: {
-        ListaCopii: () => null,
-      },
       // resolvers: {
       //   Query: {
       //     copii: (parent, args, cache, info) => {
@@ -72,10 +69,7 @@ export const createUrqlClient = (ssrExchange: any) => ({
           },
 
           createCopil: (_result, args, cache, info) => {
-            // invalidateAllCopii(cache);
-            cache.invalidate({
-              __typename: "ListaCopii",
-            });
+            invalidateAllCopii(cache);
           },
 
           login: (_result, args, cache, info) => {

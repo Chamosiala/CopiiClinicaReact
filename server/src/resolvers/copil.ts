@@ -42,12 +42,9 @@ export class CopilResolver {
     return Copil.findOne(id);
   }
 
-  @Query(() => ListaCopii)
-  async copii(): Promise<ListaCopii> {
-    const copii = await Copil.find();
-    return {
-      copii,
-    };
+  @Query(() => [Copil])
+  copii(): Promise<Copil[]> {
+    return Copil.find();
   }
 
   @Mutation(() => CopilResponse)

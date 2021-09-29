@@ -45,11 +45,6 @@ export type FieldError = {
   message: Scalars['String'];
 };
 
-export type ListaCopii = {
-  __typename?: 'ListaCopii';
-  copii: Array<Copil>;
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
   createCopil: CopilResponse;
@@ -155,7 +150,7 @@ export type PrezentaTopicResponse = {
 
 export type Query = {
   __typename?: 'Query';
-  copii: ListaCopii;
+  copii: Array<Copil>;
   copil?: Maybe<Copil>;
   hello: Scalars['String'];
   me?: Maybe<User>;
@@ -280,7 +275,7 @@ export type RegisterMutation = { __typename?: 'Mutation', register: { __typename
 export type CopiiQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CopiiQuery = { __typename?: 'Query', copii: { __typename?: 'ListaCopii', copii: Array<{ __typename?: 'Copil', id: number, createdAt: string, updatedAt: string, nume: string, prenume: string, varsta: number, prezente?: Maybe<Array<{ __typename?: 'Prezenta', id: number, createdAt: string, updatedAt: string, copilId: number, data: any, dataFrumoasa: string, prezent: boolean, copil: { __typename?: 'Copil', nume: string, prenume: string, varsta: number }, prezentaTopics?: Maybe<Array<{ __typename?: 'PrezentaTopic', id: number, createdAt: string, updatedAt: string, titlu: string, detalii: string, tip: string, prezentaId: number }>> }>> }> } };
+export type CopiiQuery = { __typename?: 'Query', copii: Array<{ __typename?: 'Copil', id: number, createdAt: string, updatedAt: string, nume: string, prenume: string, varsta: number, prezente?: Maybe<Array<{ __typename?: 'Prezenta', id: number, createdAt: string, updatedAt: string, copilId: number, data: any, dataFrumoasa: string, prezent: boolean, copil: { __typename?: 'Copil', nume: string, prenume: string, varsta: number }, prezentaTopics?: Maybe<Array<{ __typename?: 'PrezentaTopic', id: number, createdAt: string, updatedAt: string, titlu: string, detalii: string, tip: string, prezentaId: number }>> }>> }> };
 
 export type CopilQueryVariables = Exact<{
   id: Scalars['Int'];
@@ -491,9 +486,7 @@ export function useRegisterMutation() {
 export const CopiiDocument = gql`
     query Copii {
   copii {
-    copii {
-      ...RegularCopil
-    }
+    ...RegularCopil
   }
 }
     ${RegularCopilFragmentDoc}`;

@@ -16,7 +16,7 @@ export const CopiiTableBody: React.FC<CopiiTableBodyProps> = ({}) => {
   } else if (!data?.copii) {
     body = <Tr>no data.copii</Tr>;
   } else {
-    body = data.copii.copii.map((copil) =>
+    body = data.copii.map((copil) =>
       !copil ? (
         <Tr>no copii</Tr>
       ) : (
