@@ -1,8 +1,6 @@
 import { dedupExchange, fetchExchange } from "@urql/core";
+import { Cache, cacheExchange } from "@urql/exchange-graphcache";
 import {
-  CopiiDocument,
-  CopiiQuery,
-  CreateCopilMutation,
   CreatePrezentaMutationVariables,
   CreatePrezentaTopicMutationVariables,
   DeleteCopilMutationVariables,
@@ -14,15 +12,13 @@ import {
   RegisterMutation,
 } from "../generated/graphql";
 import { betterUpdateQuery } from "./betterUpdateQuery";
-import { cacheExchange, Cache } from "@urql/exchange-graphcache";
-import copii from "../pages/copii";
 
 const invalidateAllCopii = (cache: Cache) => {
   const allFields = cache.inspectFields("Query");
   console.log("allFields: ", allFields);
   const fieldInfos = allFields.filter((info) => info.fieldName === "copii");
   fieldInfos.forEach((fi) => {
-    console.log("fi: ", fi);
+    console.log("fi arguments: ", fi.arguments);
     cache.invalidate("Query", "copii", fi.arguments || {});
   });
 };
@@ -76,7 +72,10 @@ export const createUrqlClient = (ssrExchange: any) => ({
           },
 
           createCopil: (_result, args, cache, info) => {
-            invalidateAllCopii(cache);
+            // invalidateAllCopii(cache);
+            cache.invalidate({
+              __typename: "ListaCopii",
+            });
           },
 
           login: (_result, args, cache, info) => {

@@ -161,6 +161,7 @@ export type Query = {
   me?: Maybe<User>;
   prezenta?: Maybe<Prezenta>;
   prezentaTopic?: Maybe<PrezentaTopic>;
+  prezente: Array<Prezenta>;
 };
 
 
@@ -306,6 +307,11 @@ export type PrezentaTopicQueryVariables = Exact<{
 
 
 export type PrezentaTopicQuery = { __typename?: 'Query', prezentaTopic?: Maybe<{ __typename?: 'PrezentaTopic', id: number, createdAt: string, updatedAt: string, titlu: string, detalii: string, tip: string, prezentaId: number }> };
+
+export type PrezenteQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PrezenteQuery = { __typename?: 'Query', prezente: Array<{ __typename?: 'Prezenta', id: number, createdAt: string, updatedAt: string, copilId: number, data: any, dataFrumoasa: string, prezent: boolean, copil: { __typename?: 'Copil', nume: string, prenume: string, varsta: number }, prezentaTopics?: Maybe<Array<{ __typename?: 'PrezentaTopic', id: number, createdAt: string, updatedAt: string, titlu: string, detalii: string, tip: string, prezentaId: number }>> }> };
 
 export const RegularPrezentaTopicFragmentDoc = gql`
     fragment RegularPrezentaTopic on PrezentaTopic {
@@ -538,4 +544,15 @@ export const PrezentaTopicDocument = gql`
 
 export function usePrezentaTopicQuery(options: Omit<Urql.UseQueryArgs<PrezentaTopicQueryVariables>, 'query'> = {}) {
   return Urql.useQuery<PrezentaTopicQuery>({ query: PrezentaTopicDocument, ...options });
+};
+export const PrezenteDocument = gql`
+    query Prezente {
+  prezente {
+    ...RegularPrezenta
+  }
+}
+    ${RegularPrezentaFragmentDoc}`;
+
+export function usePrezenteQuery(options: Omit<Urql.UseQueryArgs<PrezenteQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<PrezenteQuery>({ query: PrezenteDocument, ...options });
 };

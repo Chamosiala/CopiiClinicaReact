@@ -42,7 +42,7 @@ export const PrezentaTopicBox: React.FC<PrezentaTopicBoxProps> = ({
           onClick={() => {
             deletePrezentaTopic({ id: prezentaTopic.id });
           }}
-          aria-label="Edit PrezentaTopic"
+          aria-label="Delete PrezentaTopic"
           icon={<DeleteIcon />}
         />
       </VStack>

@@ -1,12 +1,12 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Flex, Heading, Link } from "@chakra-ui/layout";
+import { Table, Th, Thead, Tr } from "@chakra-ui/table";
 import { withUrqlClient } from "next-urql";
-import React from "react";
-import { CopiiTable } from "../components/CopiiTable";
-import { Layout } from "../components/Layout";
-import { createUrqlClient } from "../utils/createUrqlClient";
 import NextLink from "next/link";
-import { PrezenteTable } from "../components/PrezenteTable";
+import React from "react";
+import { Layout } from "../components/Layout";
+import { ToatePrezentele } from "../components/ToatePrezentele";
+import { createUrqlClient } from "../utils/createUrqlClient";
 
 interface PrezenteProps {}
 
@@ -15,14 +15,23 @@ const Prezente: React.FC<PrezenteProps> = ({}) => {
     <Layout>
       <Flex alignItems="center">
         <Heading>Prezente</Heading>
-        <NextLink href="/create-copil">
+        <NextLink href="/create-prezenta">
           <Button as={Link} ml="auto">
-            create prezenta
+            Adauga prezenta
           </Button>
         </NextLink>
       </Flex>
       <Box mt={10}>
-        <PrezenteTable />
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>Copil</Th>
+              <Th>Data</Th>
+              <Th isNumeric={true}>Prezent</Th>
+            </Tr>
+          </Thead>
+          <ToatePrezentele />
+        </Table>
       </Box>
     </Layout>
   );

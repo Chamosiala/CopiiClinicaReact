@@ -71,4 +71,9 @@ export class PrezentaResolver {
   prezenta(@Arg("id", () => Int) id: number): Promise<Prezenta | undefined> {
     return Prezenta.findOne({ id: id });
   }
+
+  @Query(() => [Prezenta])
+  prezente(): Promise<Prezenta[]> {
+    return Prezenta.find();
+  }
 }

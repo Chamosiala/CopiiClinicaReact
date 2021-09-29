@@ -1,7 +1,8 @@
-import { Tr, Td, Tbody, Button, Link } from "@chakra-ui/react";
+import { Tr, Td, Tbody, Button, Link, IconButton } from "@chakra-ui/react";
 import React from "react";
 import { useCopiiQuery, useDeleteCopilMutation } from "../generated/graphql";
 import NextLink from "next/link";
+import { DeleteIcon } from "@chakra-ui/icons";
 
 interface CopiiTableBodyProps {}
 
@@ -36,7 +37,14 @@ export const CopiiTableBody: React.FC<CopiiTableBodyProps> = ({}) => {
               Adauga Prezenta
             </Button>
           </NextLink>
-          <Button onClick={() => deleteCopil({ id: copil.id })}>delet</Button>
+          <IconButton
+            colorScheme="red"
+            onClick={() => {
+              deleteCopil({ id: copil.id });
+            }}
+            aria-label="Delete Copil"
+            icon={<DeleteIcon />}
+          />
         </Tr>
       )
     );

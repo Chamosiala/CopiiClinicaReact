@@ -1,5 +1,13 @@
 import { Button } from "@chakra-ui/button";
-import { Box, Flex, Heading, Stack, Text, VStack } from "@chakra-ui/layout";
+import {
+  Box,
+  Flex,
+  Heading,
+  Link,
+  Stack,
+  Text,
+  VStack,
+} from "@chakra-ui/layout";
 import { withUrqlClient } from "next-urql";
 import React, { useEffect, useState } from "react";
 import { Layout } from "../../components/Layout";
@@ -7,6 +15,7 @@ import { PrezentaTopicBox } from "../../components/PrezentaTopicBox";
 import { PrezentaTopicForm } from "../../components/PrezentaTopicForm";
 import { createUrqlClient } from "../../utils/createUrqlClient";
 import { useGetPrezentaFromUrl } from "../../utils/useGetPrezentaFromUrl";
+import NextLink from "next/link";
 
 export const Prezenta = ({}) => {
   const [{ data, error, fetching }] = useGetPrezentaFromUrl();
@@ -38,10 +47,14 @@ export const Prezenta = ({}) => {
   return (
     <Layout>
       <Box mb={10}>
-        <Heading textAlign="center">
-          {data.prezenta.copil.nume} {data.prezenta.copil.prenume},{" "}
-          {data.prezenta.copil.varsta}
-        </Heading>
+        <NextLink href="/copil/[id]" as={`/copil/${data.prezenta.copilId}`}>
+          <Link>
+            <Heading textAlign="center">
+              {data.prezenta.copil.nume} {data.prezenta.copil.prenume},{" "}
+              {data.prezenta.copil.varsta}
+            </Heading>
+          </Link>
+        </NextLink>
         <Heading fontSize="lg">
           <Text ml={550}>{data.prezenta.dataFrumoasa}</Text>
         </Heading>
@@ -59,7 +72,7 @@ export const Prezenta = ({}) => {
               }
             }}
           >
-            adauga
+            Adauga
           </Button>
         </Flex>
         <VStack spacing={4}>
@@ -88,7 +101,7 @@ export const Prezenta = ({}) => {
               }
             }}
           >
-            adauga
+            Adauga
           </Button>
         </Flex>
         <VStack spacing={4}>
@@ -117,7 +130,7 @@ export const Prezenta = ({}) => {
               }
             }}
           >
-            adauga
+            Adauga
           </Button>
         </Flex>
         <VStack spacing={4}>

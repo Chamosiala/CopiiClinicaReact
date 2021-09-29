@@ -1,10 +1,12 @@
-import { Box, Heading } from "@chakra-ui/layout";
+import { Box, Flex, Heading, Link } from "@chakra-ui/layout";
 import { withUrqlClient } from "next-urql";
 import React from "react";
 import { useGetCopilFromUrl } from "../../utils/useGetCopilFromUrl";
 import { PrezenteTable } from "../../components/PrezenteTable";
 import { Layout } from "../../components/Layout";
 import { createUrqlClient } from "../../utils/createUrqlClient";
+import NextLink from "next/link";
+import { Button } from "@chakra-ui/button";
 
 export const Copil = ({}) => {
   const [{ data, error, fetching }] = useGetCopilFromUrl();
@@ -31,9 +33,21 @@ export const Copil = ({}) => {
 
   return (
     <Layout>
-      <Heading mb={4}>
-        #{data.copil.id} {data.copil.nume} {data.copil.prenume}
-      </Heading>
+      <Flex alignItems="center" mb={8}>
+        <Heading>
+          #{data.copil.id} {data.copil.nume} {data.copil.prenume}
+        </Heading>
+        <NextLink
+          href="/create-prezenta/[id]"
+          as={`/create-prezenta/${data.copil.id}`}
+        >
+          <Link ml="auto">
+            <Button mr={2} as={Link} zIndex={-1}>
+              Adauga Prezenta
+            </Button>
+          </Link>
+        </NextLink>
+      </Flex>
       <PrezenteTable copil={data.copil as any} />
     </Layout>
   );
