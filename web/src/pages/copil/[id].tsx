@@ -42,8 +42,8 @@ export const Copil = ({}) => {
           as={`/create-prezenta/${data.copil.id}`}
         >
           <Link ml="auto">
-            <Button mr={2} as={Link} zIndex={-1}>
-              Adauga Prezenta
+            <Button colorScheme="orange" mr={2} as={Link} zIndex={-1}>
+              Adauga prezenta
             </Button>
           </Link>
         </NextLink>

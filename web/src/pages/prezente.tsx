@@ -16,9 +16,11 @@ const Prezente: React.FC<PrezenteProps> = ({}) => {
       <Flex alignItems="center">
         <Heading>Prezente</Heading>
         <NextLink href="/create-prezenta">
-          <Button as={Link} ml="auto">
-            Adauga prezenta
-          </Button>
+          <Link ml="auto">
+            <Button zIndex={-1} colorScheme="orange" as={Link}>
+              Adauga prezenta
+            </Button>
+          </Link>
         </NextLink>
       </Flex>
       <Box mt={10}>

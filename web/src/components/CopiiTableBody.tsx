@@ -18,7 +18,7 @@ export const CopiiTableBody: React.FC<CopiiTableBodyProps> = ({}) => {
   } else {
     body = data.copii.map((copil) =>
       !copil ? (
-        <Tr>no copii</Tr>
+        <Tr>Niciun copil</Tr>
       ) : (
         <Tr key={copil.id}>
           <Td>
@@ -33,8 +33,8 @@ export const CopiiTableBody: React.FC<CopiiTableBodyProps> = ({}) => {
             href="/create-prezenta/[id]"
             as={`/create-prezenta/${copil.id}`}
           >
-            <Button mr={2} as={Link}>
-              Adauga Prezenta
+            <Button colorScheme="orange" mr={2} as={Link}>
+              Adauga prezenta
             </Button>
           </NextLink>
           <IconButton

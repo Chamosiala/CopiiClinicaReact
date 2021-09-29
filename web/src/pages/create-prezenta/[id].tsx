@@ -53,8 +53,14 @@ export const CreatePrezenta = ({}) => {
                 Prezent?
               </label>
               <br />
-              <Button mt={2} mr="auto" type="submit" isLoading={isSubmitting}>
-                Create
+              <Button
+                colorScheme="orange"
+                mt={4}
+                mr="auto"
+                type="submit"
+                isLoading={isSubmitting}
+              >
+                Adauga
               </Button>
             </Box>
           </Form>

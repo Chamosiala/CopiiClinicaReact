@@ -44,8 +44,13 @@ const createCopil: React.FC<createCopilProps> = ({}) => {
               placeholder="varsta"
               type="number"
             />
-            <Button mt={4} type="submit" isLoading={isSubmitting}>
-              Create
+            <Button
+              colorScheme="orange"
+              mt={4}
+              type="submit"
+              isLoading={isSubmitting}
+            >
+              Adauga
             </Button>
           </Form>
         )}

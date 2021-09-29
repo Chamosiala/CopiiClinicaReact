@@ -1,14 +1,5 @@
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import {
-  Flex,
-  Box,
-  Heading,
-  Text,
-  Button,
-  VStack,
-  Stack,
-  IconButton,
-} from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
+import { Box, Flex, Heading, IconButton, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import {
   PrezentaTopic,
@@ -39,6 +30,7 @@ export const PrezentaTopicBox: React.FC<PrezentaTopicBoxProps> = ({
       </Flex>
       <VStack>
         <IconButton
+          colorScheme="red"
           onClick={() => {
             deletePrezentaTopic({ id: prezentaTopic.id });
           }}

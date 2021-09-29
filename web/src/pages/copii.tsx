@@ -15,8 +15,8 @@ const Copii: React.FC<CopiiProps> = ({}) => {
       <Flex alignItems="center">
         <Heading>Copii</Heading>
         <NextLink href="/create-copil">
-          <Button as={Link} ml="auto">
-            create copil
+          <Button colorScheme="orange" as={Link} ml="auto">
+            Adauga copil
           </Button>
         </NextLink>
       </Flex>
