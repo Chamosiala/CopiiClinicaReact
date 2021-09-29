@@ -1,9 +1,6 @@
 import { Button } from "@chakra-ui/button";
-import { Checkbox } from "@chakra-ui/checkbox";
-import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Box } from "@chakra-ui/layout";
-import { Radio } from "@chakra-ui/radio";
-import { Formik, Form, Field } from "formik";
+import { Field, Form, Formik } from "formik";
 import { withUrqlClient } from "next-urql";
 import router from "next/router";
 import React from "react";

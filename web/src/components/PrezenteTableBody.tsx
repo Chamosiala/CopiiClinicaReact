@@ -1,8 +1,8 @@
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
-import { Tr, Td, Tbody, Button, Icon, Link } from "@chakra-ui/react";
+import { Icon, Link, Tbody, Td, Tr } from "@chakra-ui/react";
+import NextLink from "next/link";
 import React from "react";
 import { Copil } from "../generated/graphql";
-import NextLink from "next/link";
 
 interface PrezenteTableBodyProps {
   copil: Copil | undefined;

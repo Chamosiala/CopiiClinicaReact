@@ -1,5 +1,5 @@
-import { dedupExchange, fetchExchange, gql } from "@urql/core";
-import { Cache, cacheExchange } from "@urql/exchange-graphcache";
+import { dedupExchange, fetchExchange } from "@urql/core";
+import { cacheExchange } from "@urql/exchange-graphcache";
 import {
   CreatePrezentaMutationVariables,
   CreatePrezentaTopicMutationVariables,

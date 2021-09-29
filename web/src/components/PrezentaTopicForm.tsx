@@ -1,8 +1,7 @@
 import { Button } from "@chakra-ui/button";
 import { Box } from "@chakra-ui/layout";
-import { Formik, Form } from "formik";
-import router from "next/router";
-import React, { useEffect } from "react";
+import { Form, Formik } from "formik";
+import React from "react";
 import { useCreatePrezentaTopicMutation } from "../generated/graphql";
 import { toErrorMap } from "../utils/toErrorMap";
 import { InputField } from "./InputField";
