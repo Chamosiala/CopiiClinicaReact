@@ -1,4 +1,4 @@
-import { dedupExchange, fetchExchange } from "@urql/core";
+import { dedupExchange, fetchExchange, gql } from "@urql/core";
 import { Cache, cacheExchange } from "@urql/exchange-graphcache";
 import {
   CreatePrezentaMutationVariables,
@@ -13,15 +13,15 @@ import {
 } from "../generated/graphql";
 import { betterUpdateQuery } from "./betterUpdateQuery";
 
-const invalidateAllCopii = (cache: Cache) => {
-  const allFields = cache.inspectFields("Query");
-  console.log("allFields: ", allFields);
-  const fieldInfos = allFields.filter((info) => info.fieldName === "copii");
-  fieldInfos.forEach((fi) => {
-    console.log("fi arguments: ", fi.arguments);
-    cache.invalidate("Query", "copii", fi.arguments || {});
-  });
-};
+// const invalidateAllCopii = (cache: Cache) => {
+//   const allFields = cache.inspectFields("Query");
+//   console.log("allFields: ", allFields);
+//   const fieldInfos = allFields.filter((info) => info.fieldName === "copii");
+//   fieldInfos.forEach((fi) => {
+//     console.log("fi arguments: ", fi.arguments);
+//     cache.invalidate("Query", "copii", fi.arguments || {});
+//   });
+// };
 
 export const createUrqlClient = (ssrExchange: any) => ({
   url: "http://localhost:4000/graphql",
@@ -31,13 +31,6 @@ export const createUrqlClient = (ssrExchange: any) => ({
   exchanges: [
     dedupExchange,
     cacheExchange({
-      // resolvers: {
-      //   Query: {
-      //     copii: (parent, args, cache, info) => {
-      //       return { __typename: "Copil", id: args.id };
-      //     },
-      //   },
-      // },
       updates: {
         Mutation: {
           deleteCopil: (_result, args, cache, info) => {
@@ -69,7 +62,9 @@ export const createUrqlClient = (ssrExchange: any) => ({
           },
 
           createCopil: (_result, args, cache, info) => {
-            invalidateAllCopii(cache);
+            cache.invalidate({
+              __typename: "Copil",
+            });
           },
 
           login: (_result, args, cache, info) => {

@@ -16,12 +16,6 @@ import { FieldError } from "../utils/FieldError";
 import { Prezenta } from "../entities/Prezenta";
 
 @ObjectType()
-class ListaCopii {
-  @Field(() => [Copil])
-  copii: Copil[];
-}
-
-@ObjectType()
 class CopilResponse {
   @Field(() => [FieldError], { nullable: true })
   errors?: FieldError[];
