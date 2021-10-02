@@ -1,10 +1,11 @@
 import { Button } from "@chakra-ui/button";
-import { Box } from "@chakra-ui/layout";
+import { Box, Flex } from "@chakra-ui/layout";
 import { Form, Formik } from "formik";
 import React from "react";
 import { useCreatePrezentaTopicMutation } from "../generated/graphql";
 import { toErrorMap } from "../utils/toErrorMap";
 import { InputField } from "./InputField";
+import { TextareaField } from "./TextareaField";
 
 interface PrezentaTopicFormProps {
   prezentaId: number;
@@ -27,20 +28,18 @@ export const PrezentaTopicForm: React.FC<PrezentaTopicFormProps> = ({
         });
         if (response.data?.createPrezentaTopic.errors) {
           setErrors(toErrorMap(response.data.createPrezentaTopic.errors));
-        } else {
-          // router.reload();
         }
       }}
     >
       {({ isSubmitting }) => (
         <Form>
-          <Box>
+          <Box w="392px" borderWidth="1px" p={5} mr="40px">
             <InputField name="titlu" label="Titlu" placeholder="titlu" />
-            <InputField
+            <TextareaField
               name="detalii"
               label="Detalii"
               placeholder="detalii"
-              type="textarea"
+              mt={2}
             />
             <Button mt={2} mr="auto" type="submit" isLoading={isSubmitting}>
               Create
