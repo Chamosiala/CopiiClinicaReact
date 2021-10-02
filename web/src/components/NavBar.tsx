@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Link } from "@chakra-ui/react";
+import { Box, Button, Flex, Link, Text } from "@chakra-ui/react";
 import React from "react";
 import NextLink from "next/link";
 import { useLogoutMutation, useMeQuery } from "../generated/graphql";
@@ -31,7 +31,7 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
     body = (
       <Flex>
         <Box mr={2} color="black">
-          {data.me.username}
+          <Text fontWeight="semibold">{data.me.username}</Text>
         </Box>
         <Button
           color="black"
@@ -49,21 +49,23 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
 
   return (
     <Flex position="sticky" top="0" zIndex={0} bg="orange" p={4} ml={"auto"}>
-      <Box mr="auto">
+      <Flex mr="auto">
         <NextLink href="/">
           <Link mr={2} color="black">
-            Acasă
+            <Text fontWeight="bold">Acasă</Text>
           </Link>
         </NextLink>
         <NextLink href="/copii">
           <Link mr={2} color="black">
-            Copii
+            <Text fontWeight="semibold">Copii</Text>
           </Link>
         </NextLink>
         <NextLink href="/prezente">
-          <Link color="black">Prezente</Link>
+          <Link color="black">
+            <Text fontWeight="semibold">Prezențe</Text>
+          </Link>
         </NextLink>
-      </Box>
+      </Flex>
       <Box ml="auto">{body}</Box>
     </Flex>
   );
