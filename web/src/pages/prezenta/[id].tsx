@@ -93,7 +93,6 @@ export const Prezenta = ({}) => {
         <Flex>
           <Heading>Comportamente</Heading>
           <Button
-            zIndex={-1}
             ml="4"
             onClick={() => {
               if (tip != "Comportament") {
@@ -123,7 +122,6 @@ export const Prezenta = ({}) => {
         <Flex>
           <Heading>Tehnici</Heading>
           <Button
-            zIndex={-1}
             ml="4"
             onClick={() => {
               if (tip != "Tehnica") {
