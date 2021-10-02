@@ -41,7 +41,13 @@ export const PrezentaTopicForm: React.FC<PrezentaTopicFormProps> = ({
               placeholder="detalii"
               mt={2}
             />
-            <Button mt={2} mr="auto" type="submit" isLoading={isSubmitting}>
+            <Button
+              colorScheme="orange"
+              mt={2}
+              mr="auto"
+              type="submit"
+              isLoading={isSubmitting}
+            >
               Create
             </Button>
           </Box>

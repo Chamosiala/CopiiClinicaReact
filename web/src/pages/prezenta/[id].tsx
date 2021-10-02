@@ -64,6 +64,7 @@ export const Prezenta = ({}) => {
         <Flex>
           <Heading>Activitati</Heading>
           <Button
+            colorScheme="orange"
             ml="4"
             onClick={() => {
               if (tip != "Activitate") {
@@ -93,6 +94,7 @@ export const Prezenta = ({}) => {
         <Flex>
           <Heading>Comportamente</Heading>
           <Button
+            colorScheme="orange"
             ml="4"
             onClick={() => {
               if (tip != "Comportament") {
@@ -122,6 +124,7 @@ export const Prezenta = ({}) => {
         <Flex>
           <Heading>Tehnici</Heading>
           <Button
+            colorScheme="orange"
             ml="4"
             onClick={() => {
               if (tip != "Tehnica") {
