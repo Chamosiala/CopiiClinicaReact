@@ -1,5 +1,5 @@
 import { DeleteIcon } from "@chakra-ui/icons";
-import { Box, Flex, Heading, IconButton, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, IconButton, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import {
   PrezentaTopic,
@@ -19,9 +19,9 @@ export const PrezentaTopicBox: React.FC<PrezentaTopicBoxProps> = ({
       <Flex key={prezentaTopic.id} p={5} shadow="md" borderWidth="1px">
         <Flex>
           <Box w="350px" h="auto" resize="vertical">
-            <Heading fontSize="xl" textAlign="center">
-              {prezentaTopic.titlu}
-            </Heading>
+            <Text mw="350px" align="center">
+              <Text as="i">{prezentaTopic.titlu}</Text>
+            </Text>
             <Text mw="350px" mt={4}>
               {prezentaTopic.detalii}
             </Text>
