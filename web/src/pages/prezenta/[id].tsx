@@ -20,6 +20,7 @@ import NextLink from "next/link";
 export const Prezenta = ({}) => {
   const [{ data, error, fetching }] = useGetPrezentaFromUrl();
   const [tip, setTip] = useState("");
+
   useEffect(() => {
     setTip("");
   }, [data]);
@@ -92,6 +93,7 @@ export const Prezenta = ({}) => {
         <Flex>
           <Heading>Comportamente</Heading>
           <Button
+            zIndex={-1}
             ml="4"
             onClick={() => {
               if (tip != "Comportament") {
@@ -121,6 +123,7 @@ export const Prezenta = ({}) => {
         <Flex>
           <Heading>Tehnici</Heading>
           <Button
+            zIndex={-1}
             ml="4"
             onClick={() => {
               if (tip != "Tehnica") {
