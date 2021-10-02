@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/button";
-import { Box, Flex } from "@chakra-ui/layout";
+import { Box } from "@chakra-ui/layout";
 import { Form, Formik } from "formik";
 import React from "react";
 import { useCreatePrezentaTopicMutation } from "../generated/graphql";

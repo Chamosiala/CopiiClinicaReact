@@ -1,10 +1,6 @@
-import { DeleteIcon } from "@chakra-ui/icons";
-import { Box, Flex, IconButton, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import React from "react";
-import {
-  PrezentaTopic,
-  useDeletePrezentaTopicMutation,
-} from "../generated/graphql";
+import { PrezentaTopic } from "../generated/graphql";
 import { PrezentaTopicBoxButtons } from "./PrezentaTopicBoxButtons";
 
 interface PrezentaTopicBoxProps {
@@ -14,7 +10,6 @@ interface PrezentaTopicBoxProps {
 export const PrezentaTopicBox: React.FC<PrezentaTopicBoxProps> = ({
   prezentaTopic,
 }) => {
-  const [, deletePrezentaTopic] = useDeletePrezentaTopicMutation();
   return prezentaTopic ? (
     <Flex>
       <Flex key={prezentaTopic.id} p={5} shadow="md" borderWidth="1px">
