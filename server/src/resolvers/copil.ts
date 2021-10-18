@@ -14,6 +14,7 @@ import {
 import { isAuth } from "../middlewares/isAuth";
 import { FieldError } from "../utils/FieldError";
 import { Prezenta } from "../entities/Prezenta";
+import { getConnection } from "typeorm";
 
 @ObjectType()
 class CopilResponse {
@@ -76,5 +77,26 @@ export class CopilResolver {
   async deleteCopil(@Arg("id", () => Int) id: number): Promise<boolean> {
     await Copil.delete({ id });
     return true;
+  }
+
+  @Mutation(() => Copil, { nullable: true })
+  @UseMiddleware(isAuth)
+  async updateCopil(
+    @Arg("id", () => Int) id: number,
+    @Arg("nume") nume: string,
+    @Arg("prenume") prenume: string,
+    @Arg("varsta") varsta: number
+  ): Promise<Copil | null> {
+    const result = await getConnection()
+      .createQueryBuilder()
+      .update(Copil)
+      .set({ nume, prenume, varsta })
+      .where("id = :id", {
+        id,
+      })
+      .returning("*")
+      .execute();
+
+    return result.raw[0];
   }
 }
