@@ -56,6 +56,7 @@ export type Mutation = {
   login: UserResponse;
   logout: Scalars['Boolean'];
   register: UserResponse;
+  updateCopil?: Maybe<Copil>;
 };
 
 
@@ -100,6 +101,14 @@ export type MutationLoginArgs = {
 
 export type MutationRegisterArgs = {
   options: UsernamePasswordInput;
+};
+
+
+export type MutationUpdateCopilArgs = {
+  id: Scalars['Int'];
+  nume: Scalars['String'];
+  prenume: Scalars['String'];
+  varsta: Scalars['Int'];
 };
 
 export type Prezenta = {
@@ -271,6 +280,16 @@ export type RegisterMutationVariables = Exact<{
 
 
 export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'UserResponse', errors?: Maybe<Array<{ __typename?: 'FieldError', field: string, message: string }>>, user?: Maybe<{ __typename?: 'User', id: number, username: string }> } };
+
+export type UpdateCopilMutationVariables = Exact<{
+  id: Scalars['Int'];
+  nume: Scalars['String'];
+  prenume: Scalars['String'];
+  varsta: Scalars['Int'];
+}>;
+
+
+export type UpdateCopilMutation = { __typename?: 'Mutation', updateCopil?: Maybe<{ __typename?: 'Copil', id: number, createdAt: string, updatedAt: string, nume: string, prenume: string, varsta: number, prezente?: Maybe<Array<{ __typename?: 'Prezenta', id: number, createdAt: string, updatedAt: string, copilId: number, data: any, dataFrumoasa: string, prezent: boolean, copil: { __typename?: 'Copil', nume: string, prenume: string, varsta: number }, prezentaTopics?: Maybe<Array<{ __typename?: 'PrezentaTopic', id: number, createdAt: string, updatedAt: string, titlu: string, detalii: string, tip: string, prezentaId: number }>> }>> }> };
 
 export type CopiiQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -482,6 +501,17 @@ export const RegisterDocument = gql`
 
 export function useRegisterMutation() {
   return Urql.useMutation<RegisterMutation, RegisterMutationVariables>(RegisterDocument);
+};
+export const UpdateCopilDocument = gql`
+    mutation UpdateCopil($id: Int!, $nume: String!, $prenume: String!, $varsta: Int!) {
+  updateCopil(id: $id, nume: $nume, prenume: $prenume, varsta: $varsta) {
+    ...RegularCopil
+  }
+}
+    ${RegularCopilFragmentDoc}`;
+
+export function useUpdateCopilMutation() {
+  return Urql.useMutation<UpdateCopilMutation, UpdateCopilMutationVariables>(UpdateCopilDocument);
 };
 export const CopiiDocument = gql`
     query Copii {

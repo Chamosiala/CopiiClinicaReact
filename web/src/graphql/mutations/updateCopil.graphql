@@ -1,0 +1,10 @@
+mutation UpdateCopil(
+  $id: Int!
+  $nume: String!
+  $prenume: String!
+  $varsta: Int!
+) {
+  updateCopil(id: $id, nume: $nume, prenume: $prenume, varsta: $varsta) {
+    ...RegularCopil
+  }
+}

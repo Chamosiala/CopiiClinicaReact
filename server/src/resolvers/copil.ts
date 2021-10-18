@@ -85,7 +85,7 @@ export class CopilResolver {
     @Arg("id", () => Int) id: number,
     @Arg("nume") nume: string,
     @Arg("prenume") prenume: string,
-    @Arg("varsta") varsta: number
+    @Arg("varsta", () => Int) varsta: number
   ): Promise<Copil | null> {
     const result = await getConnection()
       .createQueryBuilder()
