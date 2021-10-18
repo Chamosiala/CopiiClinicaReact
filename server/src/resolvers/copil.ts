@@ -39,7 +39,7 @@ export class CopilResolver {
 
   @Query(() => [Copil])
   copii(): Promise<Copil[]> {
-    return Copil.find();
+    return Copil.find({ order: { nume: "ASC", prenume: "ASC" } });
   }
 
   @Mutation(() => CopilResponse)
