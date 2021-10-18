@@ -11,10 +11,12 @@ import { useCreatePrezentaMutation } from "../../generated/graphql";
 import { createUrqlClient } from "../../utils/createUrqlClient";
 import { toErrorMap } from "../../utils/toErrorMap";
 import { useGetIntId } from "../../utils/useGetIntId";
+import { useIsAuth } from "../../utils/useIsAuth";
 
 export const CreatePrezenta = ({}) => {
   const intId = useGetIntId();
   const [, createPrezenta] = useCreatePrezentaMutation();
+  useIsAuth();
 
   return (
     <Layout variant="small">
@@ -25,7 +27,6 @@ export const CreatePrezenta = ({}) => {
             copilId: intId,
             input: {
               data: values.data,
-              // prezent: values.prezent === "prezent" ? true : false,
               prezent: values.prezent,
             },
           });

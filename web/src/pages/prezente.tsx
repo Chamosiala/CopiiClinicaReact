@@ -7,10 +7,12 @@ import React from "react";
 import { Layout } from "../components/Layout";
 import { ToatePrezentele } from "../components/ToatePrezentele";
 import { createUrqlClient } from "../utils/createUrqlClient";
+import { useIsAuth } from "../utils/useIsAuth";
 
 interface PrezenteProps {}
 
 const Prezente: React.FC<PrezenteProps> = ({}) => {
+  useIsAuth();
   return (
     <Layout>
       <Flex alignItems="center">

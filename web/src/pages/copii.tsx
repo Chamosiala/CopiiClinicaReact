@@ -6,10 +6,12 @@ import { CopiiTable } from "../components/CopiiTable";
 import { Layout } from "../components/Layout";
 import { createUrqlClient } from "../utils/createUrqlClient";
 import NextLink from "next/link";
+import { useIsAuth } from "../utils/useIsAuth";
 
 interface CopiiProps {}
 
 const Copii: React.FC<CopiiProps> = ({}) => {
+  useIsAuth();
   return (
     <Layout>
       <Flex alignItems="center">
