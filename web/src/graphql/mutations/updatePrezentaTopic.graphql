@@ -1,0 +1,5 @@
+mutation UpdatePrezentaTopic($id: Int!, $titlu: String!, $detalii: String!) {
+  updatePrezentaTopic(id: $id, titlu: $titlu, detalii: $detalii) {
+    ...RegularPrezentaTopic
+  }
+}

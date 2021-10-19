@@ -6,6 +6,7 @@ import {
   Resolver,
   UseMiddleware,
 } from "type-graphql";
+import { getConnection } from "typeorm";
 import { Prezenta } from "../entities/Prezenta";
 import {
   PrezentaTopic,
@@ -57,5 +58,25 @@ export class PrezentaTopicResolver {
     @Arg("id", () => Int) id: number
   ): Promise<PrezentaTopic | undefined> {
     return PrezentaTopic.findOne({ id: id });
+  }
+
+  @Mutation(() => PrezentaTopic, { nullable: true })
+  @UseMiddleware(isAuth)
+  async updatePrezentaTopic(
+    @Arg("id", () => Int) id: number,
+    @Arg("titlu") titlu: string,
+    @Arg("detalii") detalii: string
+  ): Promise<PrezentaTopic | null> {
+    const result = await getConnection()
+      .createQueryBuilder()
+      .update(PrezentaTopic)
+      .set({ titlu, detalii })
+      .where("id = :id", {
+        id,
+      })
+      .returning("*")
+      .execute();
+
+    return result.raw[0];
   }
 }
