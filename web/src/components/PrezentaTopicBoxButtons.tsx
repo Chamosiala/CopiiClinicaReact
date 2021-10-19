@@ -1,5 +1,5 @@
 import { IconButton } from "@chakra-ui/button";
-import { DeleteIcon } from "@chakra-ui/icons";
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { VStack } from "@chakra-ui/layout";
 import React from "react";
 import {
@@ -9,13 +9,14 @@ import {
 
 interface PrezentaTopicBoxButtonsProps {
   prezentaTopic: PrezentaTopic;
+  handleEditClick: VoidFunction;
 }
 
 export const PrezentaTopicBoxButtons: React.FC<PrezentaTopicBoxButtonsProps> =
-  ({ prezentaTopic }) => {
+  ({ prezentaTopic, handleEditClick }) => {
     const [, deletePrezentaTopic] = useDeletePrezentaTopicMutation();
     return (
-      <VStack>
+      <VStack ml={1}>
         <IconButton
           colorScheme="red"
           onClick={() => {
@@ -23,6 +24,14 @@ export const PrezentaTopicBoxButtons: React.FC<PrezentaTopicBoxButtonsProps> =
           }}
           aria-label="Delete PrezentaTopic"
           icon={<DeleteIcon />}
+        />
+        <IconButton
+          colorScheme="orange"
+          onClick={() => {
+            handleEditClick();
+          }}
+          aria-label="Edit PrezentaTopic"
+          icon={<EditIcon />}
         />
       </VStack>
     );
