@@ -5,6 +5,7 @@ import {
   CopiiQuery,
   CreateCopilMutation,
   CreateCopilMutationVariables,
+  CreatePrezentaMutation,
   CreatePrezentaMutationVariables,
   CreatePrezentaTopicMutationVariables,
   DeleteCopilMutationVariables,
@@ -14,6 +15,8 @@ import {
   LogoutMutation,
   MeDocument,
   MeQuery,
+  PrezenteDocument,
+  PrezenteQuery,
   RegisterMutation,
 } from "../generated/graphql";
 import { betterUpdateQuery } from "./betterUpdateQuery";
@@ -54,6 +57,23 @@ export const createUrqlClient = (ssrExchange: any) => ({
               __typename: "Copil",
               id: (args as CreatePrezentaMutationVariables).copilId,
             });
+
+            betterUpdateQuery<CreatePrezentaMutation, PrezenteQuery>(
+              cache,
+              { query: PrezenteDocument },
+              _result,
+              (result, query) => {
+                if (result.createPrezenta.errors) {
+                  return query;
+                } else {
+                  return {
+                    prezente: query.prezente.push(
+                      result.createPrezenta.prezenta
+                    ),
+                  };
+                }
+              }
+            );
           },
 
           createPrezentaTopic: (_result, args, cache, info) => {
