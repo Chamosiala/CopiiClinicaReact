@@ -1,13 +1,19 @@
+import { IconButton } from "@chakra-ui/button";
 import Icon from "@chakra-ui/icon";
-import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
+import { CheckIcon, CloseIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { Link } from "@chakra-ui/layout";
+import { Flex } from "@chakra-ui/react";
 import { Tbody, Td, Tr } from "@chakra-ui/table";
 import NextLink from "next/link";
 import React from "react";
-import { usePrezenteQuery } from "../generated/graphql";
+import {
+  useDeletePrezentaMutation,
+  usePrezenteQuery,
+} from "../generated/graphql";
 
 export const ToatePrezentele = ({}) => {
   const [{ data, fetching }] = usePrezenteQuery();
+  const [, deletePrezenta] = useDeletePrezentaMutation();
 
   let body = null;
 
@@ -37,6 +43,24 @@ export const ToatePrezentele = ({}) => {
             <Icon as={CloseIcon} />
           )}
         </Td>
+        <Flex className="rowDeleteEditButtons" pt="8px" ml={5}>
+          <IconButton
+            mr={2}
+            colorScheme="red"
+            onClick={() => {
+              deletePrezenta({ id: prezenta.id });
+            }}
+            aria-label="Delete Prezenta"
+            icon={<DeleteIcon />}
+          />
+          <NextLink href="/">
+            <IconButton
+              colorScheme="orange"
+              aria-label="Edit Prezenta"
+              icon={<EditIcon />}
+            />
+          </NextLink>
+        </Flex>
       </Tr>
     ));
   }

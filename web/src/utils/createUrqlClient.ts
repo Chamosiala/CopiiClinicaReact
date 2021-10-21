@@ -1,9 +1,14 @@
-import { dedupExchange, fetchExchange } from "@urql/core";
+import { dedupExchange, fetchExchange, gql } from "@urql/core";
 import { cacheExchange } from "@urql/exchange-graphcache";
 import {
+  CopiiDocument,
+  CopiiQuery,
+  CreateCopilMutation,
+  CreateCopilMutationVariables,
   CreatePrezentaMutationVariables,
   CreatePrezentaTopicMutationVariables,
   DeleteCopilMutationVariables,
+  DeletePrezentaMutationVariables,
   DeletePrezentaTopicMutationVariables,
   LoginMutation,
   LogoutMutation,
@@ -12,16 +17,6 @@ import {
   RegisterMutation,
 } from "../generated/graphql";
 import { betterUpdateQuery } from "./betterUpdateQuery";
-
-// const invalidateAllCopii = (cache: Cache) => {
-//   const allFields = cache.inspectFields("Query");
-//   console.log("allFields: ", allFields);
-//   const fieldInfos = allFields.filter((info) => info.fieldName === "copii");
-//   fieldInfos.forEach((fi) => {
-//     console.log("fi arguments: ", fi.arguments);
-//     cache.invalidate("Query", "copii", fi.arguments || {});
-//   });
-// };
 
 export const createUrqlClient = (ssrExchange: any) => ({
   url: "http://localhost:4000/graphql",
@@ -37,6 +32,13 @@ export const createUrqlClient = (ssrExchange: any) => ({
             cache.invalidate({
               __typename: "Copil",
               id: (args as DeleteCopilMutationVariables).id,
+            });
+          },
+
+          deletePrezenta: (_result, args, cache, info) => {
+            cache.invalidate({
+              __typename: "Prezenta",
+              id: (args as DeletePrezentaMutationVariables).id,
             });
           },
 
@@ -62,9 +64,20 @@ export const createUrqlClient = (ssrExchange: any) => ({
           },
 
           createCopil: (_result, args, cache, info) => {
-            cache.invalidate({
-              __typename: "Copil",
-            });
+            betterUpdateQuery<CreateCopilMutation, CopiiQuery>(
+              cache,
+              { query: CopiiDocument },
+              _result,
+              (result, query) => {
+                if (result.createCopil.errors) {
+                  return query;
+                } else {
+                  return {
+                    copii: query.copii.push(result.createCopil.copil),
+                  };
+                }
+              }
+            );
           },
 
           login: (_result, args, cache, info) => {
